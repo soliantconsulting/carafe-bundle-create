@@ -1,0 +1,34 @@
+{
+    "$schema": "https://carafe.fm/schema/draft-02/meta.schema.json#",
+    "about": "<span style=\"\" >This simple example illustrates the basics of the bundle format.</span>",
+    "bookend": "__",
+    "jsApiMethods": {
+        "foo": {
+            "about": "Yadda yadda",
+            "parameters": [
+                "param1",
+                "param2",
+                "param3"
+            ]
+        },
+        "bar": {
+            "about": "Yadda yadda yadda",
+            "parameters": [
+                "foo",
+                "bar",
+                "baz"
+            ]
+        }
+    },
+    "category": "Development",
+    "creator": "jlavere",
+    "description": "A very simple starter bundle.",
+    "id": "457fc33e-d582-4b5d-903e-3317dcff8c02",
+    "name": "Carafe React",
+    "offlineCompatible": true,
+    "references": {
+        "Carafe.FM": "https://carafe.fm"
+    },
+    "version": "0.0.1",
+    "windowsTested": false
+}

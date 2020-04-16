@@ -89,6 +89,17 @@ const cli = meow(
             limit: 5
         },
         {
+            type: 'autocomplete',
+            name: 'templateDirectory',
+            message: 'Template Type?',
+            initial: 'Vanilla',
+            choices: [
+              { title: 'React', value: 'template-react' },
+              { title: 'Vanilla', value: 'template' }
+            ],
+            limit: 5
+        },
+        {
             type: 'text',
             name: 'bundleCreator',
             message: 'Bundle Creator?',
@@ -106,7 +117,7 @@ const cli = meow(
     const response = await prompts(questions);
     bundleName = response.bundleName ? response.bundleName : bundleName;
 
-    const root = extractTemplate(response.bundleDirName);
+    const root = extractTemplate(response.bundleDirName, response.templateDirectory);
     const metaPath = root + '/src/meta.json';
 
     if (!fs.existsSync(metaPath)) {
@@ -130,14 +141,19 @@ function carafeSemver(bundleVersion) {
     return semver.valid(bundleVersion) && semver.valid(semver.coerce(bundleVersion)) === bundleVersion
 };
 
-function extractTemplate(name) {
+function extractTemplate(name, templateDirectory) {
     const root = path.resolve(name);
+    const templatePath = path.resolve(__dirname + '/' + templateDirectory);
     if (fs.existsSync(root)) {
         log.error('Directory already exists');
         process.exit(1);
     }
-    fs.mkdirSync(root, { recursive: true });
-    copyDir.sync(__dirname + '/template', root);
+    if (!fs.existsSync(templatePath)) {
+        log.error('Template directory doesn\'t exists');
+        process.exit(1);
+    }
+    fs.mkdirSync(root, { recursive: true });    
+    copyDir.sync(templatePath, root);
     fs.renameSync(root + '/dist.gitignore', root + '/.gitignore');
     return root;
 }

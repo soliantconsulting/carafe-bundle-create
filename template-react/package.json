@@ -1,0 +1,43 @@
+{
+  "private": true,
+  "scripts": {
+    "validate": "validate-carafe-bundle -b ",
+    "import": "extract-carafe-bundle -b ",
+    "build": "compile-carafe-bundle",
+    "send": "compile-carafe-bundle -s",
+    "force-send": "compile-carafe-bundle -s -f",
+    "watch": "render-carafe-source",
+    "watch-port": "render-carafe-source -p ",
+    "watch-send": "render-carafe-source -s",
+    "watch-send-port": "render-carafe-source -s -p ",
+    "force-watch-send": "render-carafe-source -s -f",
+    "force-watch-send-port": "render-carafe-source -s -f -p ",
+    "start-dev-server": "concurrently \"webpack --mode development --watch\" \"render-carafe-source\""
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "@carafe-fm/bundler": "^3.0.0",
+    "babel-loader": "^8.1.0",
+    "html-webpack-plugin": "^4.2.0",
+    "webpack": "^4.42.1",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "carafe": {
+    "templateFilename": "src/template.carafe",
+    "configFilename": "src/config.json",
+    "dataFilename": "src/data.json",
+    "metaFilename": "src/meta.json",
+    "previewFilename": "src/preview.jpg",
+    "librariesDirname": "src/libraries",
+    "sendFmpUrl": "",
+    "watchedFiles": {}
+  },
+  "dependencies": {
+    "concurrently": "^5.1.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "webpack-cli": "^3.3.11"
+  }
+}
